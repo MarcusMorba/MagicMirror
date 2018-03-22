@@ -1,7 +1,7 @@
 // hide scrollbar
 $("body").css("overflow", "hidden");
 
-var folder;
+var era;
 var imgLoadInterval;
 
 var socket = io.connect('http://' + document.domain + ':' + location.port);
@@ -11,7 +11,7 @@ socket.on('connect', function() {
 
 socket.on('start_animation', function(msg){
     console.log("start animation.", msg);
-    folder = msg;
+    era = msg;
     circleWithTail (300, 600, 200);
     setTimeout(loadMotionGraphics, 5000);
     imgLoadInterval = setInterval(loadImages, 12000);
@@ -56,11 +56,11 @@ function loadMotionGraphics(){
 	
 	rotatingCross(600, 300);
 	
-	//need to change direction
 	lineAndDots();
 	sineWaveInit();
 
-	eraSVG();
+    generateSVG(era);
+	//animateSVG();
 }
 
 
@@ -69,7 +69,7 @@ var imgIndex = 0;
 function loadImages(){
 
 	var newImg = document.createElement('img');
-	newImg.src= folder + "/" + imgIndex + ".jpg";
+	newImg.src= era + "/" + imgIndex + ".jpg";
     console.log(newImg.src);
 	
     newImg.style.position = "absolute";

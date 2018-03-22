@@ -530,20 +530,51 @@ function sineWave(){
   }
 }  
 
-/************************** #12 "90" *************************************/
+/************************** #12 SVG for era *************************************/
 
-function eraSVG(){
+function generateSVG(era){
 
-  var nine = document.getElementById("nine");
-  var zero = document.getElementById("zero");
+  newpath1 = document.createElementNS('http://www.w3.org/2000/svg',"path");
+  newpath1.setAttributeNS(null,"id", "nine")
+  newpath1.setAttributeNS(null,"fill", "none");
+  newpath1.setAttributeNS(null,"stroke", "#FFFFFF");
+  newpath1.setAttributeNS(null,"stroke-width", "10");
+  newpath1.setAttributeNS(null,"stroke-dashoffset", "0");
+  newpath1.setAttributeNS(null,"stroke-dasharray", "100%");
+  newpath1.setAttributeNS(null,"d", "M89.8,95.6c-4.9,8.5-25.6,35-51.6,16.2C23.3,101,22.8,85.3,30.5,74.1c9-13,34.1-27.4,52-1.8s1.8,59.5-3.6,67.8c-8.5,13-35.4,24.7-52-4");
+
+  newpath2 = document.createElementNS('http://www.w3.org/2000/svg',"path");
+  newpath2.setAttributeNS(null,"id", "zero")
+  newpath2.setAttributeNS(null,"fill", "none");
+  newpath2.setAttributeNS(null,"stroke", "#FFFFFF");
+  newpath2.setAttributeNS(null,"stroke-width", "10");
+  newpath2.setAttributeNS(null,"stroke-dashoffset", "0");
+  newpath2.setAttributeNS(null,"stroke-dasharray", "100%");
+  newpath2.setAttributeNS(null,"d", "M174,107.7c0,25.5-15.6,46.2-31,46.2s-31-20.7-31-46.2s15.6-46.2,31-46.2S174,82.2,174,107.7z");
+
   var layer1 = document.getElementById("Layer_1");
+  layer1.appendChild(newpath1);
+  layer1.appendChild(newpath2);
 
-  //console.log(zero.getTotalLength())
+
   TweenMax.to(layer1, 1, {opacity: 1 });
   var tl = new TimelineMax({repeat: -1, repeatDelay: 6, yoyo: true});
-  tl.to(nine, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut},0)
-    .to(zero, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut}, 0);
+  tl.to(newpath1, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut},0)
+    .to(newpath2, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut}, 0);
+
 }
+
+// function animateSVG(){
+
+//   var nine = document.getElementById("nine");
+//   var zero = document.getElementById("zero");
+//   var layer1 = document.getElementById("Layer_1");
+
+//   TweenMax.to(layer1, 1, {opacity: 1 });
+//   var tl = new TimelineMax({repeat: -1, repeatDelay: 6, yoyo: true});
+//   tl.to(nine, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut},0)
+//     .to(zero, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut}, 0);
+// }
 
 /************************** image frame *************************************/
 
