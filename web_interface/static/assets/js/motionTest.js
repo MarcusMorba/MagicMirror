@@ -556,7 +556,6 @@ function generateSVG(era){
   layer1.appendChild(newpath1);
   layer1.appendChild(newpath2);
 
-
   TweenMax.to(layer1, 1, {opacity: 1 });
   var tl = new TimelineMax({repeat: -1, repeatDelay: 6, yoyo: true});
   tl.to(newpath1, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut},0)
@@ -647,7 +646,7 @@ function imgFrame1(pos_x, pos_y, imgWidth, imgHeight){
     .to([top.el, topSVG], 2, {width: imgWidth+16}, 0)
     .to([right.el, rightSVG], 2, {height: imgHeight+16, top:"-=" + (imgHeight+8)}, 0)
     .to([bottom.el, bottomSVG], 2, {width: imgWidth+16, left:"-=" + (imgWidth+8)}, 0)
-    .to([left.el, top.el, right.el, bottom.el], 2 ,{opacity: 0}, 10);
+    .to([left.el, top.el, right.el, bottom.el], 2 ,{opacity: 0}, 4);
 
 }
 
@@ -707,6 +706,6 @@ function imgFrame2(pos_x, pos_y, imgWidth, imgHeight){
       .to([top.el, topSVG], 2, {width: imgWidth+16, left:"-=" + (imgWidth+8)}, 0)
       .to([right.el, rightSVG], 2, {height: imgHeight+16, top:"-=" + (imgHeight+8)}, 0)
       .to([bottom.el, bottomSVG], 2, {width: imgWidth+16, }, 0)
-      .to([left.el, top.el, right.el, bottom.el], 2 ,{opacity: 0}, 10);
+      .to([left.el, top.el, right.el, bottom.el], 2 ,{opacity: 0}, 4);
 
 }
