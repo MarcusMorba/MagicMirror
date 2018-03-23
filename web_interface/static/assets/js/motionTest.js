@@ -172,8 +172,14 @@ function halfCircle(pos_x, pos_y, rotation, remove){
   
   if (remove){
     var tl = new TimelineMax({onComplete: function(){
-      document.body.removeChild(circle1.el);
-      document.body.removeChild(circle2.el);
+      try{
+        document.body.removeChild(circle1.el);
+        document.body.removeChild(circle2.el);  
+      }catch(err){
+        document.body.removeChild(circle1.el);
+        document.body.removeChild(circle2.el);
+      }
+      
     }});
 
     tl.to(circle1SVG, 1, {strokeDashoffset: -314.1592653589793})
@@ -689,10 +695,15 @@ function imgFrame2(pos_x, pos_y, imgWidth, imgHeight){
     var bottomSVG = bottom.el.childNodes[0].childNodes[0];
   
     var tl = new TimelineMax({onComplete: function(){
-      document.body.removeChild(left.el);
-      document.body.removeChild(right.el);
-      document.body.removeChild(top.el);
-      document.body.removeChild(bottom.el);
+      try{
+        document.body.removeChild(left.el);
+        document.body.removeChild(right.el);
+        document.body.removeChild(top.el);
+        document.body.removeChild(bottom.el);  
+      }catch(err){
+        console.log("errrr whatever")
+      }
+      
     }});
 
     tl.to([left.el, leftSVG], 2, {height: imgHeight + 16}, 0)
