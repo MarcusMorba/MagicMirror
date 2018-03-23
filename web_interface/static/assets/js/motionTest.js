@@ -563,18 +563,6 @@ function generateSVG(era){
 
 }
 
-// function animateSVG(){
-
-//   var nine = document.getElementById("nine");
-//   var zero = document.getElementById("zero");
-//   var layer1 = document.getElementById("Layer_1");
-
-//   TweenMax.to(layer1, 1, {opacity: 1 });
-//   var tl = new TimelineMax({repeat: -1, repeatDelay: 6, yoyo: true});
-//   tl.to(nine, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut},0)
-//     .to(zero, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut}, 0);
-// }
-
 /************************** image frame *************************************/
 
 function getImgFrame(pos_x, pos_y, imgWidth, imgHeight){
@@ -636,10 +624,15 @@ function imgFrame1(pos_x, pos_y, imgWidth, imgHeight){
   var bottomSVG = bottom.el.childNodes[0].childNodes[0];
 
   var tl = new TimelineMax({onComplete: function(){
-    document.body.removeChild(left.el);
-    document.body.removeChild(right.el);
-    document.body.removeChild(top.el);
-    document.body.removeChild(bottom.el);
+    try{
+      document.body.removeChild(left.el);
+      document.body.removeChild(right.el);
+      document.body.removeChild(top.el);
+      document.body.removeChild(bottom.el);
+    }catch(err){
+      console.log("errrr whatever")
+    }
+
   }});
 
   tl.to([left.el, leftSVG], 2, {height: imgHeight + 16}, 0)
