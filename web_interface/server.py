@@ -193,11 +193,11 @@ def test_start(unused_addr, args, volume):
     global era, index
     index = 0
     if (args == 'ALADDIN\'S_LAMP'):
-        era = '70s'
-    if (args == 'MY_PIGGY_BANK'):
         era = '60s'
+    if (args == 'MY_PIGGY_BANK'):
+        era = '80s'
     if (args == 'MY_AIRPLANE'):
-        era = '50s'
+        era = '90s'
 
     # use socketio.emit() instead of emit()
     # because we're calling socketio in another thread

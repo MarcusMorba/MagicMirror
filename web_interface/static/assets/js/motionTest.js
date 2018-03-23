@@ -542,30 +542,53 @@ function generateSVG(era){
 
   newpath1 = document.createElementNS('http://www.w3.org/2000/svg',"path");
   newpath1.setAttributeNS(null,"id", "nine")
-  newpath1.setAttributeNS(null,"fill", "none");
+  newpath1.setAttributeNS(null,"fill", "none"); 
   newpath1.setAttributeNS(null,"stroke", "#FFFFFF");
-  newpath1.setAttributeNS(null,"stroke-width", "10");
+  newpath1.setAttributeNS(null,"stroke-width", "50");
   newpath1.setAttributeNS(null,"stroke-dashoffset", "0");
   newpath1.setAttributeNS(null,"stroke-dasharray", "100%");
-  newpath1.setAttributeNS(null,"d", "M89.8,95.6c-4.9,8.5-25.6,35-51.6,16.2C23.3,101,22.8,85.3,30.5,74.1c9-13,34.1-27.4,52-1.8s1.8,59.5-3.6,67.8c-8.5,13-35.4,24.7-52-4");
-
+  //newpath1.setAttributeNS(null,"d", "M89.8,95.6c-4.9,8.5-25.6,35-51.6,16.2C23.3,101,22.8,85.3,30.5,74.1c9-13,34.1-27.4,52-1.8s1.8,59.5-3.6,67.8c-8.5,13-35.4,24.7-52-4");
+  
   newpath2 = document.createElementNS('http://www.w3.org/2000/svg',"path");
   newpath2.setAttributeNS(null,"id", "zero")
   newpath2.setAttributeNS(null,"fill", "none");
   newpath2.setAttributeNS(null,"stroke", "#FFFFFF");
-  newpath2.setAttributeNS(null,"stroke-width", "10");
+  newpath2.setAttributeNS(null,"stroke-width", "50");
   newpath2.setAttributeNS(null,"stroke-dashoffset", "0");
   newpath2.setAttributeNS(null,"stroke-dasharray", "100%");
-  newpath2.setAttributeNS(null,"d", "M174,107.7c0,25.5-15.6,46.2-31,46.2s-31-20.7-31-46.2s15.6-46.2,31-46.2S174,82.2,174,107.7z");
+  //newpath2.setAttributeNS(null,"d", "M174,107.7c0,25.5-15.6,46.2-31,46.2s-31-20.7-31-46.2s15.6-46.2,31-46.2S174,82.2,174,107.7z");
+  newpath2.setAttributeNS(null,"d", "M353.28,76.83C374.58,49,447.49,5.45,492.71,90.71s33.92,224.06-9.19,285.52c-39.68,56.59-120.19,58.27-147.2,0C298.63,294.94,298.63,148.21,353.28,76.83Z");
 
+
+  switch (era){
+    case "50s":
+      newpath1.setAttributeNS(null,"d","M227,44.39H58.51V193.08S227.12,198,227.12,301.75c0,91.29-101.41,128-199.06,105.58");
+      break;
+    case "60s": 
+      newpath1.setAttributeNS(null,"d", "M39.32,249.86c25.24-39.61,177.86-96.13,199.19,41.41C258.87,422.59,79.63,472.15,44.06,330.84,15.67,218,49.48,82.12,119.2,50.09c50.36-23.14,87.88-13.19,119.31,0");
+      break;
+    case "70s":
+      newpath1.setAttributeNS(null,"d","M37,47H254c-27.54,67.07-55.46,132.55-80,207-19.81,60.09-36.31,131.58-47,183");
+      break;
+    case "80s":
+      newpath1.setAttributeNS(null,"d", "M45.54,315.79c1.79-95.2,181.55-99,180.22-203C225.17,1.08,46.88,1.11,58.66,129c8,87.43,171.35,94.44,178,187C246.17,449.64,42.83,459.23,45.54,315.79Z");
+      break;
+    case "90s":
+      newpath1.setAttributeNS(null,"d","M229.8,201.33c-25.24,39.61-177.86,96.13-199.19-41.41C10.25,28.6,189.49-21,225.05,120.35c28.39,112.81-5.42,248.72-75.13,280.75-50.36,23.14-87.88,13.19-119.31,0");
+      break;
+    case "00s":
+      newpath1.setAttributeNS(null,"d", "M79.28,75.83C100.58,48,166,0,218.71,89.71c45.22,85.26,33.92,224.06-9.19,285.52C169.84,431.82,96,431,62.32,375.23,21,297,24.63,147.21,79.28,75.83Z");
+      break;
+    default: break;
+  }
   var layer1 = document.getElementById("Layer_1");
   layer1.appendChild(newpath1);
   layer1.appendChild(newpath2);
 
   TweenMax.to(layer1, 1, {opacity: 1 });
   var tl = new TimelineMax({repeat: -1, repeatDelay: 6, yoyo: true});
-  tl.to(newpath1, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut},0)
-    .to(newpath2, 3, {strokeDashoffset: 1500, ease: Sine.easeInOut}, 0);
+  tl.to(newpath1, 3, {strokeDashoffset: 5000, ease: Sine.easeInOut},0)
+    .to(newpath2, 3, {strokeDashoffset: 5000, ease: Sine.easeInOut}, 0);
 
 }
 
