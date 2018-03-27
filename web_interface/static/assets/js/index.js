@@ -13,7 +13,8 @@ socket.on('connect', function() {
 socket.on('start_animation', function(msg){
     console.log("start animation.", msg);
     era = msg;
-    circleWithTail (300, 600, 200);
+    displayCircle ();
+    
     setTimeout(loadMotionGraphics, 5000);
     imgLoadInterval = setInterval(loadImages, 6000);
 });
@@ -24,6 +25,7 @@ socket.on('stop_animation', function(){
     stopAnimation();
 });
 
+//displayCircle ();
 
 function stopAnimation(){
 

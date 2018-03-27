@@ -193,7 +193,7 @@ def test_start(unused_addr, args, volume):
     global era, index
     index = 0
     if (args == 'ALADDIN\'S_LAMP'):
-        era = '60s'
+        era = '70s'
     if (args == 'MY_PIGGY_BANK'):
         era = '80s'
     if (args == 'MY_AIRPLANE'):

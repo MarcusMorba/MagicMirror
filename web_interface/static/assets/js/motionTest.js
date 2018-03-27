@@ -420,14 +420,14 @@ function rotatingCross(pos_x, pos_y){
 
 
 /************************** #10 circle with tail *************************************/
-function circleWithTail(pos_x, pos_y, size){
+function displayCircle(){
 
   var arc_in = new mojs.Shape({
     shape: 'circle',
     fill: 'none',
-    left: pos_x,
-    top: pos_y,
-    radius: size + 20,
+    left: 300,
+    top: 600,
+    radius:  220,
     stroke: 'white',
     strokeWidth: 2,
     strokeDasharray: '100%',
@@ -440,16 +440,16 @@ function circleWithTail(pos_x, pos_y, size){
     fill: 'white',
     radius: 5,
     angle: 20,
-    x: size + 20,
+    x: 220,
     isShowStart:true
   });
   
   var arc_out = new mojs.Shape({
     shape: 'circle',
     fill: 'none',
-    left: pos_x,
-    top: pos_y,
-    radius: size + 40,
+    left: 300,
+    top: 600,
+    radius: 240,
     stroke: 'white',
     strokeWidth: 2,
     strokeDasharray: '100%',
@@ -462,7 +462,7 @@ function circleWithTail(pos_x, pos_y, size){
     fill: 'white',
     radius: 5,
     angle: 20,
-    x: size + 40,
+    x: 240,
     opacity: 0,
     isShowStart:true
   });
@@ -470,9 +470,9 @@ function circleWithTail(pos_x, pos_y, size){
   var circle = new mojs.Shape({
     shape: 'circle',
     fill: 'white',
-    left: pos_x,
-    top: pos_y,
-    radius: size,
+    left: 300,
+    top: 600,
+    radius: 200,
     stroke: 'white',
     strokeWidth: 2,
     opacity: 0,
@@ -485,14 +485,17 @@ function circleWithTail(pos_x, pos_y, size){
   var arcInSVG = arc_in.el.childNodes[0].childNodes[0];
   var arcOutSVG = arc_out.el.childNodes[0].childNodes[0];
 
-  TweenMax.to(circle.el, 5, {opacity:1});
-  
   var beforeShow = new TimelineMax();
-  beforeShow.to(arc_out.el, 1, {rotation: -90})
-  .to(dot_out.el, 1, {opacity: 1});
+  beforeShow.to(circle.el, 5, {opacity:1}, 0)
+            .to(arc_out.el, 1, {rotation: -90} , 0)
+            .to(dot_out.el, 1, {opacity: 1}, 1);
 
 
-  var tl = new TimelineMax({repeat: -1, repeatDelay: 6});
+  var tl = new TimelineMax({repeat: 1, repeatDelay: 6, onComplete:function(){
+    TweenMax.to([circle.el, arc_in.el, arc_out.el], 1, {opacity: 0});
+    setTimeout(displayTriangle, 3000);
+}});
+
   tl.to(arc_in.el, 6, {rotation: "-=1080", ease: Sine.easeInOut}, 5)
     .to(arcInSVG, 2, {strokeDashoffset: 1000, ease: Sine.easeIn}, 5)
     .to(arc_out.el, 6, {rotation: "-=1080", ease: Sine.easeInOut}, 5)
@@ -502,6 +505,75 @@ function circleWithTail(pos_x, pos_y, size){
 
 }
 
+
+function displayTriangle(){
+  var triangle = new mojs.Shape({
+    shape: 'polygon',
+    points: 3,
+    fill: 'white',
+    left: 300,
+    top: 600,
+    radius: 250,
+    opacity: 0,
+    isShowStart: true,
+  });
+  
+  TweenMax.to(triangle.el, 0.5, {opacity: 1});
+
+  var tl = new TimelineMax({repeat:1, repeatDelay:3, onComplete:function(){
+    TweenMax.to(triangle.el, 0.5, {opacity: 0}, 3);
+    setTimeout(displaySpotlight, 3000);
+  }});
+  tl.to(triangle.el, 0.5, {rotation: 90}, 1)
+    .to(triangle.el, 0.5, {rotation: 180}, 4)
+    .to(triangle.el, 0.5, {rotation:270},7 )
+    .to(triangle.el, 0.5, {rotation:360}, 10);
+}
+
+
+function displayRect(){
+  var square = new mojs.Shape({
+      shape: 'rect',
+      fill: 'white',
+      radius: 10,
+      left: 300, 
+      top: 600,
+      //opacity: 0,
+      isShowStart: true
+  });
+
+  var squareSVG = square.el.childNodes[0].childNodes[0];
+  var tl = new TimelineMax({onComplete: function(){
+    setTimeout(displayCircle, 3000);
+
+  }});
+  tl.to([square.el, squareSVG], 1, {width: 400, height: 400, left:"-=150px", top:"-=150px"})
+    .to(square.el, 0.5, {width: 50, left:"+=350px"}, 10)
+    .to(square.el, 0.5, {height:0, top:"-=150px"});
+}
+
+function displaySpotlight(){
+  var circle = new mojs.Shape({
+    shape: 'circle',
+    fill: 'white',
+    left: 400,
+    top: 500,
+    radius: 150,
+    opacity:0,
+    isShowStart: true,
+  });
+
+  var circleSVG = circle.el.childNodes[0].childNodes[0];
+  
+  var tl = new TimelineMax({repeat: 1, repeatDelay: 2, onComplete:function(){
+    setTimeout(displayRect, 3000);
+  }});
+  tl.to(circle.el, 0.5, {scale:0})
+    .to(circle.el, 0.5, {scale: 1, opacity: 1})
+    .to(circle.el, 0.5, {left:"-=120px", top:"+=150px"}, 2.5)
+    .to(circle.el, 0.5, {left:"+=120px", top:"+=150px"}, 5)
+    .to(circle.el, 0.5, {scale: 0}, 7.5);
+}
 
 /************************** #11 sine wave across the screen *************************************/
 
@@ -556,8 +628,8 @@ function generateSVG(era){
   newpath2.setAttributeNS(null,"stroke-width", "50");
   newpath2.setAttributeNS(null,"stroke-dashoffset", "0");
   newpath2.setAttributeNS(null,"stroke-dasharray", "100%");
-  //newpath2.setAttributeNS(null,"d", "M174,107.7c0,25.5-15.6,46.2-31,46.2s-31-20.7-31-46.2s15.6-46.2,31-46.2S174,82.2,174,107.7z");
   newpath2.setAttributeNS(null,"d", "M353.28,76.83C374.58,49,447.49,5.45,492.71,90.71s33.92,224.06-9.19,285.52c-39.68,56.59-120.19,58.27-147.2,0C298.63,294.94,298.63,148.21,353.28,76.83Z");
+  //newpath2.setAttributeNS(null,"d", "M174,107.7c0,25.5-15.6,46.2-31,46.2s-31-20.7-31-46.2s15.6-46.2,31-46.2S174,82.2,174,107.7z");
 
 
   switch (era){
@@ -568,7 +640,7 @@ function generateSVG(era){
       newpath1.setAttributeNS(null,"d", "M39.32,249.86c25.24-39.61,177.86-96.13,199.19,41.41C258.87,422.59,79.63,472.15,44.06,330.84,15.67,218,49.48,82.12,119.2,50.09c50.36-23.14,87.88-13.19,119.31,0");
       break;
     case "70s":
-      newpath1.setAttributeNS(null,"d","M37,47H254c-27.54,67.07-55.46,132.55-80,207-19.81,60.09-36.31,131.58-47,183");
+      newpath1.setAttributeNS(null,"d","M31,40.89H236.3s23.28,2.51,11.36,30.63S123.88,251.32,95.8,430");
       break;
     case "80s":
       newpath1.setAttributeNS(null,"d", "M45.54,315.79c1.79-95.2,181.55-99,180.22-203C225.17,1.08,46.88,1.11,58.66,129c8,87.43,171.35,94.44,178,187C246.17,449.64,42.83,459.23,45.54,315.79Z");
