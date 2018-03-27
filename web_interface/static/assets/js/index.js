@@ -25,7 +25,7 @@ socket.on('stop_animation', function(){
     stopAnimation();
 });
 
-//displayCircle ();
+displayCircle (300,600,200);
 
 function stopAnimation(){
 
