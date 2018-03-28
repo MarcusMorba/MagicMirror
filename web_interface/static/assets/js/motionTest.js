@@ -419,7 +419,7 @@ function rotatingCross(pos_x, pos_y){
 
 
 
-/************************** #10 circle with tail *************************************/
+/********************** #10 change hole shape for display objects behind *************************/
 function displayCircle(pos_x, pos_y, size){
 
   var arc_in = new mojs.Shape({
@@ -528,6 +528,7 @@ function displayTriangle(){
 
   var tl = new TimelineMax({repeat:1, repeatDelay:3, onComplete:function(){
     TweenMax.to(triangle.el, 0.5, {opacity: 0}, 3);
+    flashLights();
     setTimeout(function(){
       document.body.removeChild(triangle.el);
       displaySpotlight(); 
@@ -822,4 +823,38 @@ function imgFrame2(pos_x, pos_y, imgWidth, imgHeight){
       .to([bottom.el, bottomSVG], 2, {width: imgWidth+16, }, 0)
       .to([left.el, top.el, right.el, bottom.el], 2 ,{opacity: 0}, 4);
 
+}
+
+
+/***********************************************************************************/
+function flashLights(){
+    var shape_left = new mojs.Shape({
+    shape:          'rect',
+    fill:           'white',
+    radius:         10,
+    radiusY:      1500,
+    left: -100,
+    top: 0,
+    opacity: 0,
+    isShowStart: true
+  });
+  
+  var shape_right = new mojs.Shape({
+    shape:          'rect',
+    fill:           'white',
+    radius:         30,
+    radiusY:      1500,
+    left: -30,
+    top: 0,
+    opacity: 0,
+    isShowStart: true
+  });
+    
+  TweenMax.to([shape_left.el, shape_right.el], 0.1, {skewX:"-35deg", opacity:1});
+  var tl = new TimelineMax({onComplete: function(){
+    document.body.removeChild(shape_left.el);
+    document.body.removeChild(shape_right.el);
+  }});
+  tl.to([shape_left.el, shape_right.el], 0.1, {opacity: 1})
+    .to([shape_left.el, shape_right.el], 1, {left:"+=3000px", ease:Power0.easeNone});
 }
