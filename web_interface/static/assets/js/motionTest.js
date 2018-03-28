@@ -176,8 +176,7 @@ function halfCircle(pos_x, pos_y, rotation, remove){
         document.body.removeChild(circle1.el);
         document.body.removeChild(circle2.el);  
       }catch(err){
-        document.body.removeChild(circle1.el);
-        document.body.removeChild(circle2.el);
+        console.log("err from half circle");
       }
       
     }});
@@ -494,10 +493,16 @@ function displayCircle(pos_x, pos_y, size){
   var tl = new TimelineMax({repeat: 1, repeatDelay: 6, onComplete:function(){
     TweenMax.to([circle.el, arc_in.el, arc_out.el], 1, {opacity: 0});
     setTimeout(function(){
-      document.body.removeChild(circle.el);
-      document.body.removeChild(arc_in.el);
-      document.body.removeChild(arc_out.el);
-      displayTriangle(); 
+      try{
+        document.body.removeChild(circle.el);
+        document.body.removeChild(arc_in.el);
+        document.body.removeChild(arc_out.el);
+        displayTriangle(); 
+      }catch(err){
+        console.log("err from displayCircle");
+      }
+
+     
     }, 3000);
     
 }});
@@ -530,8 +535,14 @@ function displayTriangle(){
     TweenMax.to(triangle.el, 0.5, {opacity: 0}, 3);
     flashLights();
     setTimeout(function(){
-      document.body.removeChild(triangle.el);
-      displaySpotlight(); 
+      try{
+        document.body.removeChild(triangle.el);
+        displaySpotlight(); 
+      }catch(err){
+        console.log("err from displayTriangle");
+      }
+      
+     
     }, 3000);
   }});
   tl.to(triangle.el, 0.5, {rotation: 90}, 1)
@@ -554,13 +565,18 @@ function displayRect(){
 
   var squareSVG = square.el.childNodes[0].childNodes[0];
   var tl = new TimelineMax({onComplete: function(){
-   
-  setTimeout(function(){
-    displayCircle(300,600,200);
-    document.body.removeChild(square.el);
-  }, 3000);
-
+    setTimeout(function(){
+      try{
+        document.body.removeChild(square.el);
+        displayCircle(300,600,200);
+      }catch(err){
+        console.log("err from displayRect")
+      }
+    
+     
+    }, 3000);
   }});
+
   tl.to([square.el, squareSVG], 1, {width: 400, height: 400, left:"-=150px", top:"-=150px"})
     .to(square.el, 0.5, {width: 50, left:"+=350px"}, 10)
     .to(square.el, 0.5, {height:0, top:"-=150px"});
@@ -579,8 +595,14 @@ function displaySpotlight(){
   
   var tl = new TimelineMax({repeat: 1, repeatDelay: 2, onComplete:function(){
     setTimeout(function(){
-      document.body.removeChild(circle.el);
-      displayRect()
+      try{
+        document.body.removeChild(circle.el);
+        displayRect();
+      }catch(err){
+        console.log("err from displaySpotlight");
+      }
+    
+     
     }, 3000);
   }});
 
@@ -747,7 +769,7 @@ function imgFrame1(pos_x, pos_y, imgWidth, imgHeight){
       document.body.removeChild(top.el);
       document.body.removeChild(bottom.el);
     }catch(err){
-      console.log("errrr whatever")
+      console.log("errrr imgFrame1")
     }
 
   }});
@@ -812,7 +834,7 @@ function imgFrame2(pos_x, pos_y, imgWidth, imgHeight){
         document.body.removeChild(top.el);
         document.body.removeChild(bottom.el);  
       }catch(err){
-        console.log("errrr whatever")
+        console.log("errrr from imgFrame2");
       }
       
     }});

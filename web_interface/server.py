@@ -13,7 +13,9 @@ from pythonosc import dispatcher, osc_server, udp_client
 # global variables
 index = 0
 era = ''
-keyword_list = ['entertainment', 'fashion', 'toys', 'culture', 'style', 'games', 'music', 'celebrity']
+
+#game, music, celebrity
+keyword_list = ['entertainment', 'fashion', 'toys', 'culture', 'style']
 items = []
 
 app = Flask(__name__, static_url_path='')
