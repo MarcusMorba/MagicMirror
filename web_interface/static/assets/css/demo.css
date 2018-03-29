@@ -8,36 +8,20 @@ body {
   color: #000000;
   margin: 0;
 }
-h1,
-h2,
-h3,
-p {
-  margin: 10px;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.demo {
-  margin: 3em 0;
-  padding: 7.5em 0 5.5em;
-  background: #26941f;
-}
-.demo:hover .gridster {
-  margin: 0 auto;
-  opacity: .8;
-  -webkit-transition: opacity .6s;
-  -moz-transition: opacity .6s;
-  -o-transition: opacity .6s;
-  -ms-transition: opacity .6s;
-  transition: opacity .6s;
-}
-.content {
-  color: white;
+
+#Layer_2 {
+  position: absolute;
+  left: 240px;
+  top: 100px;
+  opacity: 0;
+  enable-background:new 0 0 500 500;
 }
 
-.controls {
-  margin-bottom: 20px;
+
+canvas {
+  position: absolute;
+  left: 1100px;
+
 }
 
 /** {cursor: none;}*/

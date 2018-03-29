@@ -1,13 +1,23 @@
 /************************** image frame *************************************/
 
 var imgIndex = 0;
+var imgLoadInterval;
+
+function startImgAnim(){
+  imgLoadInterval = setInterval(loadImages, 6000);
+}
+
+function stopImgAnim(){
+  clearInterval(imgLoadInterval);
+}
+
 
 function loadImages(){
   var newImg = document.createElement('img');
   newImg.src= era + "/" + imgIndex + ".jpg";
-    //console.log(newImg.src);
+  //console.log(newImg.src);
   
-    newImg.style.position = "absolute";
+  newImg.style.position = "absolute";
   newImg.style.opacity = "0";
   document.body.appendChild(newImg);
   
@@ -61,8 +71,13 @@ function loadImages(){
       newImg.style.left = left_pos + "px";
       newImg.style.top = top_pos + "px";
           
-          var tl = new TimelineMax({onComplete: function(){
-        document.body.removeChild(newImg);
+      var tl = new TimelineMax({onComplete: function(){
+        try{
+          document.body.removeChild(newImg);  
+        }catch(err){
+          console.log("err from removing image");
+        }
+        
       }});
       tl.to(newImg, 2, {opacity: 1},0)
         .to(newImg, 2, {opacity: 0}, 4)
@@ -78,7 +93,6 @@ function loadImages(){
 
 
 function getImgFrame(pos_x, pos_y, imgWidth, imgHeight){
-
   var randomNum = Math.floor(Math.random() * 3);
   if (randomNum == 0)
     imgFrame1(pos_x, pos_y, imgWidth, imgHeight);
@@ -141,7 +155,7 @@ function imgFrame1(pos_x, pos_y, imgWidth, imgHeight){
       document.body.removeChild(top.el);
       document.body.removeChild(bottom.el);
     }catch(err){
-      console.log("errrr imgFrame1")
+      console.log("err from imgFrame1")
     }
 
   }});
@@ -206,7 +220,7 @@ function imgFrame2(pos_x, pos_y, imgWidth, imgHeight){
         document.body.removeChild(top.el);
         document.body.removeChild(bottom.el);  
       }catch(err){
-        console.log("errrr from imgFrame2");
+        console.log("err from imgFrame2");
       }
       
     }});

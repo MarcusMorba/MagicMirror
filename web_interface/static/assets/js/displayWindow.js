@@ -5,7 +5,7 @@ function windowTimeline(){
   var tl_spotlight = displaySpotlight();
   var tl_square = displayRect();
 
-  var root_timeline = new TimelineMax({repeat: 3});
+  var root_timeline = new TimelineMax({repeat:-1, repeatDelay: 3});
   root_timeline.add(tl_circle);
   root_timeline.add(tl_triangle, 36)
   root_timeline.add(tl_spotlight, 62);
@@ -14,7 +14,6 @@ function windowTimeline(){
 
 
 function displayCircle(pos_x, pos_y, size){
-
   var arc_in = new mojs.Shape({
     shape: 'circle',
     fill: 'none',
