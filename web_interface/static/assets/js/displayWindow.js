@@ -1,4 +1,16 @@
 
+function windowTimeline(){
+  var tl_circle = displayCircle(300,600,200);
+  //var tl_triangle = displayTriangle();
+
+  // var root_timeline = new TimelineMax();
+  // root_timeline.add(function(){
+  //   displayCircle(300,600,200);
+  // }, 2);
+  // root_timeline.add(displayTriangle, 4);
+}
+
+
 function displayCircle(pos_x, pos_y, size){
 
   var arc_in = new mojs.Shape({
@@ -33,7 +45,7 @@ function displayCircle(pos_x, pos_y, size){
     strokeWidth: 2,
     strokeDasharray: '100%',
     strokeDashoffset: '100%',
-    isShowStart: true,
+    isShowStart: true
   });
   
   var dot_out = new mojs.Shape({
@@ -72,16 +84,16 @@ function displayCircle(pos_x, pos_y, size){
 
   var tl = new TimelineMax({repeat: 1, repeatDelay: 6, onComplete:function(){
     TweenMax.to([circle.el, arc_in.el, arc_out.el], 1, {opacity: 0});
-    setTimeout(function(){
-      try{
-        document.body.removeChild(circle.el);
-        document.body.removeChild(arc_in.el);
-        document.body.removeChild(arc_out.el);
-        displayTriangle(); 
-      }catch(err){
-        console.log("err from displayCircle");
-      }
-    }, 3000);
+    // setTimeout(function(){
+    //   try{
+    //     document.body.removeChild(circle.el);
+    //     document.body.removeChild(arc_in.el);
+    //     document.body.removeChild(arc_out.el);
+    //     displayTriangle(); 
+    //   }catch(err){
+    //     console.log("err from displayCircle");
+    //   }
+    // }, 3000);
     
 }});
 
@@ -92,6 +104,7 @@ function displayCircle(pos_x, pos_y, size){
     .to(arcInSVG, 2, {strokeDashoffset: 1382.300767579509  , ease: Sine.easeOut},11)
     .to(arcOutSVG, 2, {strokeDashoffset: 1507.9644737231006  , ease: Sine.easeOut}, 11);
 
+  return tl;
 }
 
 
@@ -112,21 +125,24 @@ function displayTriangle(){
   var tl = new TimelineMax({repeat:1, repeatDelay:3, onComplete:function(){
     TweenMax.to(triangle.el, 0.5, {opacity: 0}, 3);
     flashLights();
-    setTimeout(function(){
-      try{
-        document.body.removeChild(triangle.el);
-        displaySpotlight(); 
-      }catch(err){
-        console.log("err from displayTriangle");
-      }
+  //   setTimeout(function(){
+  //     try{
+  //       document.body.removeChild(triangle.el);
+  //       displaySpotlight(); 
+  //     }catch(err){
+  //       console.log("err from displayTriangle");
+  //     }
       
      
-    }, 3000);
-  }});
+  //   }, 3000);
+   }});
   tl.to(triangle.el, 0.5, {rotation: 90}, 1)
     .to(triangle.el, 0.5, {rotation: 180}, 4)
     .to(triangle.el, 0.5, {rotation:270},7 )
     .to(triangle.el, 0.5, {rotation:360}, 10);
+  
+  return tl;
+
 }
 
 
