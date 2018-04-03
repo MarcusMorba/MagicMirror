@@ -14,8 +14,8 @@ from pythonosc import dispatcher, osc_server, udp_client
 index = 0
 era = ''
 
-#game, music, celebrity
-keyword_list = ['entertainment', 'fashion', 'toys', 'culture', 'style']
+#more keywords: game, toy, fashion
+keyword_list = ['entertainment', 'celebrity', 'culture', 'style', 'music']
 items = []
 
 app = Flask(__name__, static_url_path='')
@@ -87,7 +87,7 @@ def _images_get_all_items(page):
     #         page = page[end_content:]
 
     count = 0
-    while (count < 20):
+    while (count < 25):
         item, end_content = _images_get_next_item(page)
         if item == "no_links":
             break
@@ -194,11 +194,11 @@ def test_start(unused_addr, args, volume):
 
     global era, index
     index = 0
-    if (args == 'ALADDIN\'S_LAMP'):
+    if (args == 'radio'):
+        era = '50s'
+    if (args == '8track'):
         era = '70s'
-    if (args == 'MY_PIGGY_BANK'):
-        era = '80s'
-    if (args == 'MY_AIRPLANE'):
+    if (args == 'walkman'):
         era = '90s'
 
     # use socketio.emit() instead of emit()

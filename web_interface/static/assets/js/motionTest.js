@@ -543,12 +543,15 @@ function initFlashLightElem(){
   });
     
 
-  var tl = new TimelineMax();
-  tl.to([shape_left.el, shape_right.el], 0.1, {opacity: 1})
+  var tl1 = new TimelineMax();
+  tl1.to([shape_left.el, shape_right.el], 0.1, {skewX:"-35deg", opacity:1});
+  
+  var tl2 = new TimelineMax();
+  tl2.to([shape_left.el, shape_right.el], 0.1, {opacity: 1})
     .to([shape_left.el, shape_right.el], 1, {left:"+=3000px", ease:Power0.easeNone});
 
-  flashLightTimeline.add(TweenMax.to([shape_left.el, shape_right.el], 0.1, {skewX:"-35deg", opacity:1}));
-  flashLightTimeline.add(tl, 0.5);
+  flashLightTimeline.add(tl1, 0);
+  flashLightTimeline.add(tl2, 0.5);
 }
 
 function flashLights(){

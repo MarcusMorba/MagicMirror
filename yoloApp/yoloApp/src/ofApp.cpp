@@ -4,24 +4,12 @@ using namespace std;
 
 void ofApp::setup()
 {
-	/***** 9000 objects ******/
-	//string cfgfile1 = ofToDataPath("cfg/yolo9000.cfg");
-	//string weightfile1 = ofToDataPath("yolo9000.weights");
-	//string namesfile1 = ofToDataPath("cfg/9k.names");
-	//darknet.init(cfgfile1, weightfile1, namesfile1);
 
-	/***** 4 custom objects*****/
-	string cfgfile2 = ofToDataPath("4_obj/custom_obj.cfg");
-	string weightfile2 = ofToDataPath("4_obj/custom_obj.weights");
-	string namesfile2 = ofToDataPath("4_obj/custom_obj.names");
-	darknet.init(cfgfile2, weightfile2, namesfile2);
-
-	/***** 23 objects ******/
-	/*string cfgfile1 = ofToDataPath("cfg/yolo-voc.2.0-custom.cfg");
-	string weightfile1 = ofToDataPath("yolo-voc_3000.weights");
-	string namesfile1 = ofToDataPath("cfg/voc.names");
-	darknet.init(cfgfile1, weightfile1, namesfile1);*/
-
+	/**** final objects ******/
+	string cfgfile = ofToDataPath("final_obj/yolo-3-custom.cfg");
+	string weightfile = ofToDataPath("final_obj/yolo-3-custom_2000.weights");
+	string namesfile = ofToDataPath("final_obj/obj.names");
+	darknet.init(cfgfile, weightfile, namesfile);
 
 	video.setDeviceID(0);
 	video.setDesiredFrameRate(30);
