@@ -2,8 +2,7 @@
 $("body").css("overflow", "hidden");
 
 var era;
-var timelineArr = [];    //a list of instances of all timeline
-
+var animationPlaying = false;   //to prevent if receiving start_animation signal for multiple times the interface becomes a mess
 
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 socket.on('connect', function() {
@@ -11,15 +10,21 @@ socket.on('connect', function() {
 });
 
 socket.on('start_animation', function(msg){
-    console.log("start animation.", msg);
-    era = msg;
-    startAnimation();
+    console.log("animationPlaying", animationPlaying);
+    if(!animationPlaying){
+        console.log("start animation.", msg);
+        era = msg;
+        startAnimation();
+        animationPlaying = true;
+    }
+
 });
 
 socket.on('stop_animation', function(){
     console.log("stop animation");
 
     stopAnimation();
+    animationPlaying = false
 });
 
 
