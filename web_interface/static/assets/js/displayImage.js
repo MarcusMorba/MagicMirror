@@ -87,7 +87,7 @@ function loadImages(){
     }, 10); 
 
   imgIndex++;
-  if (imgIndex == 100) imgIndex = 0;
+  if (imgIndex == 90) imgIndex = 0;
 
 }
 

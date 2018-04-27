@@ -6,16 +6,16 @@ void ofApp::setup()
 {
 
 	/**** final objects ******/
-	string cfgfile = ofToDataPath("final_obj/yolo-3-custom.cfg");
-	string weightfile = ofToDataPath("final_obj/yolo-3-custom_2000.weights");
-	string namesfile = ofToDataPath("final_obj/obj.names");
+	string cfgfile = ofToDataPath("final_obj/yolo-5-custom.cfg");
+	string weightfile = ofToDataPath("final_obj/yolo-5-custom_2000.weights");
+	string namesfile = ofToDataPath("final_obj/obj-5.names");
 	darknet.init(cfgfile, weightfile, namesfile);
 
 	video.setDeviceID(0);
 	video.setDesiredFrameRate(30);
 	video.initGrabber(640, 480);
 
-	thresh = 0.3;
+	thresh = 0.6;
 	maxOverlap = 0.25; 	// if a detected object overlaps >maxOverlap with another detected
 						// object with a higher confidence, it gets omitted
 

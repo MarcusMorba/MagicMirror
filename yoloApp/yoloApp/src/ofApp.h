@@ -26,8 +26,8 @@ public:
 	float thresh;
 	float maxOverlap;
 
-	int stable_count;
-	int lose_object_count;
+	uint64_t stable_count;
+	uint64_t lose_object_count;
 	string current_frame_object;
 	string last_frame_object;
 	bool load_shader;

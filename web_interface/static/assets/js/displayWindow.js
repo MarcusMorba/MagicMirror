@@ -117,7 +117,7 @@ function displayTriangle(){
  
   var tl = new TimelineMax({repeat:1, repeatDelay:3, onComplete:function(){
     TweenMax.to(triangle.el, 0.5, {opacity: 0}, 3);
-    flashLights();
+    //flashLights();
    }});
   tl.to(triangle.el, 0.5, {rotation: 90}, 1)
     .to(triangle.el, 0.5, {rotation: 180}, 4)

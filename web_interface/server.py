@@ -9,13 +9,14 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 from flask_socketio import SocketIO, send, emit
 from pythonosc import dispatcher, osc_server, udp_client
+import random
 
 # global variables
 index = 0
 era = ''
 
-#more keywords: game, toy, fashion
-keyword_list = ['entertainment', 'celebrity', 'culture', 'style', 'music']
+#more keywords: game, toy
+keyword_list = ['entertainment', 'celebrity', 'culture', 'style', 'music', 'fashion']
 items = []
 
 app = Flask(__name__, static_url_path='')
@@ -77,24 +78,14 @@ def _images_get_next_item(s):
 def _images_get_all_items(page):
     global items
     items = []
-    # while True:
-    #     item, end_content = _images_get_next_item(page)
-    #     if item == "no_links":
-    #         break
-    #     else:
-    #         items.append(item)  # Append all the links in the list named 'Links'
-    #         # time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
-    #         page = page[end_content:]
-
-    count = 0
-    while (count < 25):
+    while True:
         item, end_content = _images_get_next_item(page)
         if item == "no_links":
             break
         else:
             items.append(item)  # Append all the links in the list named 'Links'
+            # time.sleep(0.1)        #Timer could be used to slow down the request for image downloads
             page = page[end_content:]
-            count+=1
 
     return items
 
@@ -197,17 +188,21 @@ def test_start(unused_addr, args, volume):
     if (args == 'radio'):
         era = '50s'
     if (args == '8track'):
+        era = '60s'
+    if (args == 'record'):
         era = '70s'
     if (args == 'walkman'):
         era = '90s'
+    if (args == 'ipod'):
+        era = '00s'
 
     # use socketio.emit() instead of emit()
     # because we're calling socketio in another thread
     # emit() is context-aware
     socketio.emit('start_animation', era)
 
-    for i in range(len(keyword_list)):
-         start_download(era+"_"+keyword_list[i])
+    start_download(era + "_" + keyword_list[random.randint(0,5)])
+
 
 def test_stop(unused_addr):
     print ('test stop')

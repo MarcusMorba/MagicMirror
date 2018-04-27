@@ -1,5 +1,6 @@
-// hide scrollbar
+// hide scrollbar and cursor
 $("body").css("overflow", "hidden");
+document.body.style.cursor = 'none';
 
 var era;
 var animationPlaying = false;   //to prevent if receiving start_animation signal for multiple times the interface becomes a mess
@@ -29,7 +30,7 @@ socket.on('stop_animation', function(){
 
 
 function startAnimation(){
-    initFlashLightElem();
+    //initFlashLightElem();
 
     windowTimeline();
     setTimeout(loadMotionGraphics, 5000);
@@ -38,7 +39,7 @@ function startAnimation(){
 }
 
 function stopAnimation(){
-    flashLights();
+    //flashLights();
 
     clearCanvas();
     stopImgAnim();
