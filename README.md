@@ -25,8 +25,7 @@ I'm doing this on Windows and would recommend Visual Studio 2015 because ofxDark
 
 ### How to train your own model for custom objects
 * I was mostly following [this tutorial](https://timebutt.github.io/static/how-to-train-yolov2-to-detect-custom-objects/) on how to prepare my own dataset, and also read a lot on the original [darknet repo](https://github.com/AlexeyAB/darknet) on training, when to stop training and how to make sense of all the parameters. I was doing Yolo2 but things are moving pretty fast.
-
-* I trained 5 custom objects on my own. Weights file of my custom model are too big for github but can be downloaded [here](https://drive.google.com/open?id=0B_VZFKGn-JtrS0x3R2dVSXBROGM). Put them under yoloApp/yoloApp/bin/data/final_obj.
+* I trained 5 custom objects on my own. Weights file of my custom model are too big for github but can be downloaded [here](https://drive.google.com/open?id=1GfJvZICA189mMn_870l5hiDociMFAJrq). Put them under yoloApp/yoloApp/bin/data/final_obj.
 
 
 ## Web & Animation
